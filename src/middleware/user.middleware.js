@@ -15,7 +15,13 @@ const verifyUser = async (ctx, next) => {
   }
   await next();
 };
-
+// 处理密码进行md5加密
+const handlePassword = async (ctx, next) => {
+  const { password } = ctx.request.body;
+  ctx.request.body.password = passwordmd5(password);
+  await next();
+};
 module.exports = {
   verifyUser,
+  handlePassword,
 };

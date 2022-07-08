@@ -7,10 +7,5 @@ class UserController {
     const result = await userService.create(user);
     ctx.body = JSON.stringify(result);
   }
-  async handlePassword(ctx, next) {
-    const { password } = ctx.request.body;
-    ctx.request.body.password = passwordmd5(password);
-    await next();
-  }
 }
 module.exports = new UserController();
