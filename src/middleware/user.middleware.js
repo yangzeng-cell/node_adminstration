@@ -1,5 +1,6 @@
 const errorTypes = require("../constants/error-type");
 const userService = require("../service/user.service");
+const { passwordmd5 } = require("./../utils/password-md5");
 const verifyUser = async (ctx, next) => {
   const { name, password } = ctx.request.body;
   console.log(name, password);

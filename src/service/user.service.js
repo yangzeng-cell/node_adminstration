@@ -11,8 +11,16 @@ class userService {
   async getUserName(name) {
     const statement = `SELECT * FROM user WHERE name = ?`;
     const result = await connection.execute(statement, [name]);
-    console.log(result);
     return result[0];
+  }
+  async updateAvatarUrlById(userId, avatarUrl) {
+    const statement = `UPDATE user SET avatar_url =? WHERE id=?`;
+    try {
+      const result = await connection.execute(statement, [avatarUrl, userId]);
+      return result[0];
+    } catch (error) {
+      console.log(error, "updateAvatarUrlById");
+    }
   }
 }
 
